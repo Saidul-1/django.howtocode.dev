@@ -2,7 +2,7 @@
 
 আমরা মডেল তৈরি করেছি, সেই মডেলে কিছু ডাটা/ফিল্ড তৈরি করেছি, এখন আমরা সেই ডাটাগুলো ভিউ এর মাধ্যমে প্রকাশ করব, যাতে কেউ আমাদের ওয়েবসাইটে \(\) গেলে সেই ডাটাগুলো দখতে পায়।
 
-আমরা আগের চ্যাপ্টারে দেখেছি কিভাবে জ্যাঙ্গো শেলের মাধ্যমে মডেল এর ডাটা রিড করা যায়, ভিউ তে আমরা একই ভাবে কাজটা করব। আমাদের myapp এর ভিতরে থাকা views.py ফাইলটা টেক্সট এডিটরে ওপেন করুন, সেটার চেহারা মোটামোটি এরকম থাকার কথাঃ
+আমরা আগের চ্যাপ্টারে দেখেছি কিভাবে জ্যাঙ্গো শেলের মাধ্যমে মডেল এর ডাটা রিড করা যায়, ভিউ তে আমরা একই ভাবে কাজটা করব। আমাদের myapp এর ভিতরে থাকা views.py ফাইলটা টেক্সট এডিটরে ওপেন করুন, সেটার চেহারা মোটামুটি এরকম থাকার কথাঃ
 
 ```text
 from django.shortcuts import render, HttpResponse
@@ -14,7 +14,7 @@ def index(request):
 
 উক্ত ভিউটা রেসপন্স হিসেবে শুধুমাত্র ‘index.html’ ফাইলটা রেন্ডার করে পাঠিয়ে দিচ্ছে! অন্য কোন কাজ করছেনা। এটাকে আমাদের মন মত কাজ করাতে প্রথমে models.py থেকে Message মডেলটা ইম্পোর্ট করুনঃ
 
-from models import Message তারপর index ভিউ ফাংশন এর ভিতর মডেল ম্যানেজার ব্যবহার করে Message এর সবগুলো ফিল্ড একটা ভ্যারিয়েবলে রাখুনঃ
+from .models import Message (এখানে models.py এবং views.py একই ফোল্ডারে থাকায় '.' ব্যবহার করা হয়েছে। myapp.models এভাবেও লিখা যেতো) তারপর index ভিউ ফাংশন এর ভিতর মডেল ম্যানেজার ব্যবহার করে Message এর সবগুলো ফিল্ড একটা ভ্যারিয়েবলে রাখুনঃ
 
 ```text
 all_messages = Message.objects.all()
@@ -37,7 +37,7 @@ return render(request, 'index.html', {'messages': all_messages})
 ```text
 from django.shortcuts import render, HttpResponse
 
-from models import Message
+from .models import Message
 
 # Create your views here.
 def index(request):
